@@ -1,0 +1,104 @@
+import { useEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import Link from "next/link";
+
+const products = [
+  {
+    name: "Premium Golf Bag",
+    description: "Lightweight, durable, and stylish bags built for the serious golfer.",
+    link: "/products/golf-bag"
+  },
+  {
+    name: "Performance Apparel",
+    description: "Stay cool and focused with moisture-wicking, breathable golfwear.",
+    link: "/products/apparel"
+  },
+  {
+    name: "GPS Rangefinder",
+    description: "Pinpoint accuracy and touchscreen ease in the palm of your hand.",
+    link: "/products/rangefinder"
+  }
+];
+
+export default function HomePage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="p-0">
+      {/* Hero Video Section */}
+      <div className="relative w-full h-[60vh] overflow-hidden">
+        <video
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          src="/videos/istockphoto-2019929297-640_adpp_is.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 flex flex-col justify-center items-center text-white text-center px-4">
+          <h1 className="text-4xl sm:text-6xl font-bold drop-shadow-lg">Welcome to Caddy Co.</h1>
+          <p className="text-lg sm:text-xl mt-4 max-w-xl drop-shadow">Elevating your golf game with premium products and professional caddy services.</p>
+          <Button className="mt-6 text-base px-6 py-2 rounded-2xl">Explore Products</Button>
+        </div>
+      </div>
+
+      <div className="p-6 space-y-12">
+        <section className="text-center">
+          <h2 className="text-3xl font-semibold mb-4">Our Mission</h2>
+          <p className="max-w-3xl mx-auto">
+            At Caddy Co., our mission is to empower golfers of all levels by delivering innovative gear and personalized caddy support. We aim to make every round of golf more enjoyable, efficient, and memorable.
+          </p>
+        </section>
+
+        <section className="text-center">
+          <h2 className="text-3xl font-semibold mb-4">Our Vision</h2>
+          <p className="max-w-3xl mx-auto">
+            We envision a world where every golfer—whether amateur or pro—has access to the tools and services needed to perform their best on the green.
+          </p>
+        </section>
+
+        <section className="text-center space-y-8">
+          <h2 className="text-3xl font-semibold">Explore Our Products</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {products.map((product, index) => (
+              <Link href={product.link} key={index}>
+                <Card className="hover:shadow-xl transition-shadow cursor-pointer">
+                  <CardContent className="p-4">
+                    <h3 className="text-xl font-medium">{product.name}</h3>
+                    <p className="text-sm mt-2">{product.description}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="text-center space-y-8">
+          <h2 className="text-3xl font-semibold">Our Services</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <Card className="hover:shadow-xl transition-shadow">
+              <CardContent className="p-4">
+                <h3 className="text-xl font-medium">Personal Caddy Booking</h3>
+                <p className="text-sm mt-2">Book professional caddies for your next round.</p>
+              </CardContent>
+            </Card>
+            <Card className="hover:shadow-xl transition-shadow">
+              <CardContent className="p-4">
+                <h3 className="text-xl font-medium">On-Course Concierge</h3>
+                <p className="text-sm mt-2">Enjoy snacks, drinks, and support during play.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <footer className="text-center pt-10 text-sm text-gray-500">
+          © 2025 Caddy Company. All rights reserved.
+        </footer>
+      </div>
+    </div>
+  );
+}
